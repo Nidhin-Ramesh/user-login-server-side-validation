@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>log in</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 50px;
+
+
+        }
+
+
+
+        .signup-div {
+            max-width: 360px;
+            padding: 20px;
+            display: flex;
+
+
+        }
+
+        .tandc-div {
+            max-width: 360px;
+            padding: 20px;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .content {
+            margin-top: 10vh;
+
+        }
+    </style>
+</head>
+
+<body class="overflow-y: auto;">
+
+    <header>
+        <nav class="navbar fixed-top bg-dark" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Uber</a>
+            </div>
+        </nav>
+    </header>
+    <div class="content d-flex flex-column align-items-center">
+        <img width="48" height="48"
+            src="https://img.icons8.com/external-those-icons-fill-those-icons/48/external-Uber-social-media-those-icons-fill-those-icons.png"
+            alt="external-Uber-social-media-those-icons-fill-those-icons" />
+        <div class="login-div d-flex flex-column">
+            <% if(messages.error){%>
+                <br>
+                <div class="alert alert-danger">
+                    <strong>
+                        <%=messages.error%>
+                    </strong>
+                </div>
+                <% } %>
+
+                    <form class="d-flex flex-column" action="/login" method="post">
+
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" name="email" id="exampleInputEmail1"
+                                placeholder="email id">
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" id="exampleInputPassword1"
+                                placeholder="password">
+                        </div>
+
+                        <button type="submit" class="btn btn-dark d-flex mx-auto">Login</button>
+                    </form>
+
+        </div>
+        <p>don't have accout <span><a href="/register">Sign Up</a></span></p>
+        <div class="tandc-div">
+
+            <p>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

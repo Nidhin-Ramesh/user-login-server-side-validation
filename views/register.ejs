@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 50px;
+
+
+    }
+
+
+
+    .signup-div {
+      max-width: 360px;
+      padding: 20px;
+      display: flex;
+
+
+    }
+
+    .tandc-div {
+      max-width: 360px;
+      padding: 20px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+
+    }
+
+    .content {
+      margin-top: 10vh;
+
+    }
+  </style>
+</head>
+
+<body class="overflow-y: auto;">
+  <header>
+    <nav class="navbar fixed-top bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Uber</a>
+      </div>
+    </nav>
+  </header>
+  <div class="content d-flex flex-column align-items-center">
+    <img width="48" height="48"
+      src="https://img.icons8.com/external-those-icons-fill-those-icons/48/external-Uber-social-media-those-icons-fill-those-icons.png"
+      alt="external-Uber-social-media-those-icons-fill-those-icons" />
+    <div class="signup-div">
+      <% if(messages.error){%>
+        <div class="alert alert-danger">
+          <strong>
+            <%=messages.error%>
+          </strong>
+        </div>
+        <% } %>
+          <form class="d-flex flex-column" action="/register" method="post">
+            <div class="mb-3">
+              <label for="exampleInputName" class="form-label">Name</label>
+              <input type="text" id="exampleInputName" class="form-control" name="name" placeholder="Name">
+              <p id="namelock" style="font-size: 12px; color: rgb(155, 6, 6);"></p>
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="email id">
+              <p id="maillock" style="font-size: 12px; color: rgb(155, 6, 6);"></p>
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" id="exampleInputPassword1" class="form-control" name="password" placeholder="password">
+              <p id="passwordlock" style="font-size: 12px; color: rgb(155, 6, 6);"></p>
+              <ul class="form-text " style="font-size: 11px;">
+                <li>At least 8 characters long</li>
+                <li>At least 1 capital letter</li>
+                <li>At least 1 lowercase letter</li>
+                <li>At least 1 special character</li>
+                <li>At least 1 numeric character</li>
+              </ul>
+
+            </div>
+
+
+            <button type="submit" class="btn btn-dark d-flex mx-auto">Sign Up</button>
+          </form>
+    </div>
+    <div class="tandc-div">
+      <p>By proceeding, you consent to get email by automated means, from Uber and
+        its affiliates to the number provided</p>
+      <br>
+      <p>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+    
+      const nameInput = document.getElementById("exampleInputName");
+      const emailInput = document.getElementById("exampleInputEmail1");
+      const passwordInput = document.getElementById("exampleInputPassword1");
+      const submitButton = document.querySelector('button[type="submit"]');
+    
+      // Set onBlur event listeners
+      nameInput.addEventListener("blur", validateName);
+      emailInput.addEventListener("blur", validateEmail);
+      passwordInput.addEventListener("blur", validatePassword);
+    
+      // Disable submit button initially
+      submitButton.disabled = true;
+    
+      function validateName() {
+        const name = nameInput.value.trim();
+    
+        if (name === "") {
+          displayErrorMessage("namelock", "Name cannot be empty");
+          disableSubmitButton();
+        } else if (/\d/.test(name)) {
+          displayErrorMessage("namelock", "Name cannot contain numbers");
+          disableSubmitButton();
+        } else {
+          clearErrorMessage("namelock");
+          enableSubmitButton();
+        }
+      }
+    
+      function validateEmail() {
+        const email = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (email === "") {
+          displayErrorMessage("maillock", "Email cannot be empty");
+          disableSubmitButton();
+        } else if (!emailRegex.test(email)) {
+          displayErrorMessage("maillock", "Invalid email format");
+          disableSubmitButton();
+        } else {
+          clearErrorMessage("maillock");
+          enableSubmitButton();
+        }
+      }
+    
+      function validatePassword() {
+        const password = passwordInput.value;
+        // Password requirements
+        const lengthRequirement = password.length >= 8;
+        const numberRequirement = /\d/.test(password);
+        const uppercaseRequirement = /[A-Z]/.test(password);
+        const lowercaseRequirement = /[a-z]/.test(password);
+        const specialCharacterRequirement = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+    
+        if (!lengthRequirement) {
+          displayErrorMessage("passwordlock", "Password must be at least 8 characters long");
+          disableSubmitButton();
+        } else if (!numberRequirement) {
+          displayErrorMessage("passwordlock", "Password must contain at least one number");
+          disableSubmitButton();
+        } else if (!uppercaseRequirement) {
+          displayErrorMessage("passwordlock", "Password must contain at least one uppercase letter");
+          disableSubmitButton();
+        } else if (!lowercaseRequirement) {
+          displayErrorMessage("passwordlock", "Password must contain at least one lowercase letter");
+          disableSubmitButton();
+        } else if (!specialCharacterRequirement) {
+          displayErrorMessage("passwordlock", "Password must contain at least one special character");
+          disableSubmitButton();
+        } else {
+          clearErrorMessage("passwordlock");
+          enableSubmitButton();
+        }
+      }
+    
+      function displayErrorMessage(targetId, message) {
+        const errorElement = document.getElementById(targetId);
+    
+        if (errorElement) {
+          errorElement.textContent = message;
+        }
+      }
+    
+      function clearErrorMessage(targetId) {
+        const errorElement = document.getElementById(targetId);
+    
+        if (errorElement) {
+          errorElement.textContent = "";
+        }
+      }
+    
+      function enableSubmitButton() {
+        submitButton.disabled = false;
+      }
+    
+      function disableSubmitButton() {
+        submitButton.disabled = true;
+      }
+    });
+    </script>
+</body>
+
+</html>

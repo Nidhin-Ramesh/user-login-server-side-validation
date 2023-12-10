@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Uber</a>
+                <div class="d-flex flex-row gap-2 d-md-flex justify-content-md-end">
+                    <% if (!name) { %>
+                    <a href="/login" class="btn btn-dark me-md-2 d-lg-none" type="submit">Login</a>
+                    <a href="/register" class="btn btn-light d-lg-none" type="submit">Sign Up</a>
+                    <% } else { %>
+                       
+                    <a href="#" class=" btn btn-dark me-md-2 d-lg-none" type="button"><i class="bi bi-person-circle"></i> <%=name%></a>
+                    <form action="logout?_method=DELETE" method="post">
+                        <button  class="btn btn-dark d-lg-none" type="submit" >Logout</button>
+                    </form>
+                    
+                    <% } %>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Company
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Company</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Help</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+                <% if (!name) { %>
+                    
+                    <div class=" not-Logedin flex-row gap-2 justify-content-md-end d-none d-lg-flex">
+                        <a href="/login" class="btn btn-dark me-md-2" type="button">Login</a>
+                        <a href="/register" class="btn btn-light" type="button">Sign Up</a>
+                    </div>
+                    <% } else { %>
+                   
+                    <div class=" logedin flex-row gap-2 justify-content-md-end d-none d-lg-flex">
+                        <a href="#" class="btn btn-dark me-md-2" type="button"><i class="bi bi-person-circle"></i>
+                            <%=name%>
+                        </a>
+                        <form action="logout?_method=DELETE" method="post">
+                            <button  class="btn btn-dark" type="submit">Logout</button>
+                        </form>
+                        
+                    </div>
+                    <% } %>
+        </nav>
+    </header>
+    <div class="d-flex" style="position: relative; justify-content: center; align-items: center;">
+        <img src="/assets/Rider_Home_bg_desktop2x.webp" class="d-flex" style="object-fit: fill;">
+
+        <div  style="position: absolute;top: 40px;font-size: 100px ;color: white; font-weight: 900;">Uber</div>
+    </div>
+  
+      
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
